@@ -1,0 +1,18 @@
+http:
+  http://db1:27017:
+    title: Check the status of MongoDB
+    status: 200
+    timeout: 1000
+    body: [It looks like you are trying to access MongoDB over HTTP on the native driver port.]
+
+  http://localhost:4000:
+    title: Check the service API
+    status: 200
+    timeout: 1000
+    body: [API service up and running]
+
+  http://localhost:4000/documentation:
+    title: Check the Swagger Documentation
+    status: 200
+    timeout: 1000
+    body: [Swagger]

@@ -62,13 +62,14 @@ docker network inspect my-node-network
 ``
 
 ``
-docker exec -ti  {container_id} bash
+docker exec -ti api bash
 ``
 
 ``
-docker logs {container_id}
+docker logs api
 ``
 
+# Testing
 *HEALTHCHECK*
 
 ``
@@ -121,6 +122,24 @@ output should be:
   ]
 }
 ```
+
+*Goss*
+
+add Goss to the Dockerfile
+
+``
+RUN curl -fsSL https://goss.rocks/install | sh
+``
+
+and we can test use goss:
+
+~~~bash
+docker exec -ti api goss -g test/goss/infrastructure.test.yaml validate
+~~~
+
+``
+docker exec -ti api goss -g test/goss/infrastructure.test.yaml validate
+``
 
 
 

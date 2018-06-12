@@ -1,0 +1,16 @@
+command:
+  curl -X POST http://localhost:4000/api/v1/status -F name=Spark -F ip=125.36.35.47 -F status=running:
+    title: Check the POST to the service API
+    exit-status: 0
+    stdout:
+    - '"name":"Spark","ip":"125.36.35.47","status":"running"'
+    stderr: []
+    timeout: 1000
+
+  curl curl http://localhost:4000/api/v1/status:
+    title: Check the GET from the service API
+    exit-status: 0
+    stdout:
+    - '"name":"Spark","ip":"125.36.35.47","status":"running"'
+    stderr: []
+    timeout: 1000

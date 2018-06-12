@@ -11,6 +11,9 @@ COPY package.json /app
 
 RUN npm install
 
+# Install Goss
+RUN curl -fsSL https://goss.rocks/install | sh
+
 # Bundle app source
 COPY . /app
 
