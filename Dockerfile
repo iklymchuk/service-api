@@ -16,4 +16,6 @@ COPY . /app
 
 EXPOSE 4000
 
+HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl -sS localhost:4000 || exit 1
+
 CMD [ "npm", "start", "$db"]

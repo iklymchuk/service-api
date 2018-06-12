@@ -19,7 +19,7 @@ const server = hapi.server({
 mongoose.connect(process.argv[2]);
 
 mongoose.connection.once('open', () => {
-    console.log('db ok')
+    console.log('Successfully connected to the db')
 })
 
 const init = async() => {
@@ -69,7 +69,7 @@ const init = async() => {
         method: 'GET',
         path: '/',
         handler: function (request, reply) {
-            return `<h1>API</h1>`;
+            return `API service up and running`;
         }
     },
 

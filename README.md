@@ -69,17 +69,60 @@ docker exec -ti  {container_id} bash
 docker logs {container_id}
 ``
 
-Logs output should be:
+*HEALTHCHECK*
 
-> nodeAPI@1.0.0 start /app
-> nodemon index.js "$db"
+``
+HEALTHCHECK --interval=5s --timeout=10s --retries=3 CMD curl -sS localhost:4000 || exit 1
+``
 
-> [nodemon] 1.17.5
-> [nodemon] to restart at any time, enter `rs`
-> [nodemon] watching: *.*
-> [nodemon] starting `node index.js mongodb://test:test@db1:27017/node`
-> Server running at: http://localhost:4000
-> db ok
+and check the status of API service
+
+``
+docker inspect api | jq '.[].State.Health'
+``
+
+output should be:
+
+```json
+{
+  "Status": "healthy",
+  "FailingStreak": 0,
+  "Log": [
+    {
+      "Start": "2018-06-12T10:13:18.741893926+03:00",
+      "End": "2018-06-12T10:13:18.799996008+03:00",
+      "ExitCode": 0,
+      "Output": "API service up and running"
+    },
+    {
+      "Start": "2018-06-12T10:13:23.800141532+03:00",
+      "End": "2018-06-12T10:13:23.869154994+03:00",
+      "ExitCode": 0,
+      "Output": "API service up and running"
+    },
+    {
+      "Start": "2018-06-12T10:13:28.869299375+03:00",
+      "End": "2018-06-12T10:13:28.926994914+03:00",
+      "ExitCode": 0,
+      "Output": "API service up and running"
+    },
+    {
+      "Start": "2018-06-12T10:13:33.927135854+03:00",
+      "End": "2018-06-12T10:13:33.993611212+03:00",
+      "ExitCode": 0,
+      "Output": "API service up and running"
+    },
+    {
+      "Start": "2018-06-12T10:13:38.993717829+03:00",
+      "End": "2018-06-12T10:13:39.060921116+03:00",
+      "ExitCode": 0,
+      "Output": "API service up and running"
+    }
+  ]
+}
+```
+
+
 
 
 
