@@ -1,4 +1,4 @@
-# Build distributed api service
+# Distributed api service for testing purposes
 
 *Create network*
 
